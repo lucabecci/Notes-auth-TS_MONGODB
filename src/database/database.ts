@@ -18,7 +18,7 @@ class Database {
     this._options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
     };
   }
 

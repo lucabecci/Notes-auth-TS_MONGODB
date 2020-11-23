@@ -5,6 +5,7 @@ interface INote extends Document {
   title: string;
   description: string;
   category: string;
+  user_id: string
 }
 
 class NoteSchema {
@@ -33,8 +34,8 @@ class NoteSchema {
       user_id: {
         type: String,
         required: true,
-        trim: true
-      }
+        trim: true,
+      },
     };
     this._noteSchema = new Schema(this._schemaDefinition, { timestamps: true });
   }

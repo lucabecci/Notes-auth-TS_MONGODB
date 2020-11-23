@@ -1,3 +1,8 @@
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+
 export interface IConfig {
   DB: {
     URI: string;
@@ -6,6 +11,7 @@ export interface IConfig {
   };
   PORT: string | number;
   JWT_KEY: string;
+  DEVELOPMENT: string;
 }
 
 export default <IConfig>{
@@ -15,5 +21,6 @@ export default <IConfig>{
     KEY: process.env.DB_KEY || "",
   },
   PORT: process.env.PORT || 4000,
-  JWT_KEY: process.env.JWT || 'testtoken'
+  JWT_KEY: process.env.JWT || 'test' ,
+  DEVELOPMENT: process.env.DEVELOPMENT || "dev"
 };

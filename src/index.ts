@@ -1,22 +1,23 @@
 import express, { Application } from "express";
 import morgan from "morgan";
-import passport from 'passport'
+import passport from "passport";
+import cors from 'cors'
 
 import config from "./config/config";
 import Database, { IDatabase } from "./database/database";
-import passportMiddleware from './middlewares/passport'
+import passportMiddleware from "./middlewares/passport";
 
 //routes
-import IndexRouter from "./routes/index.routes";
-import AuthRouter from "./routes/auth.routes";
-import NotesRouter from "./routes/notes.routes";
+import IndexRouter, {IIndexRouter} from "./routes/index.routes";
+import AuthRouter, {IAuthRouter} from "./routes/auth.routes";
+import NotesRouter, {INotesRouter} from "./routes/notes.routes";
 
 class App {
   _app: Application;
   _database: IDatabase;
-  _indexRouter: IndexRouter;
-  _authRouter: AuthRouter;
-  _notesRouter: NotesRouter;
+  _indexRouter: IIndexRouter;
+  _authRouter: IAuthRouter;
+  _notesRouter: INotesRouter;
 
   constructor() {
     this._app = express();
@@ -38,7 +39,8 @@ class App {
     this._app.set("port", config.PORT);
     this._app.use(express.json());
     this._app.use(express.urlencoded({ extended: false }));
-    this._app.use(morgan("dev"));
+    this._app.use(cors())
+    this._app.use(morgan(`${config.DEVELOPMENT}`));
     this._app.use(passport.initialize());
     passport.use(passportMiddleware);
   }

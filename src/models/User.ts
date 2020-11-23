@@ -6,7 +6,7 @@ export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
-  comparePassword: (password: string) => boolean
+  comparePassword: (password: string) => boolean;
 }
 
 class UserSchema {
@@ -44,7 +44,7 @@ class UserSchema {
     this._userSchema = new Schema(this._schemaDefinition, { timestamps: true });
 
     this.passwordConfigurations();
-    this.compare()
+    this.compare();
   }
 
   private passwordConfigurations() {
